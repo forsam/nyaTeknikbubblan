@@ -1,0 +1,32 @@
+{
+  "name": "teknikbubblan",
+  "version": "0.0.1",
+  "description": "teknikbubblan",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forsam/nyaTeknikbubblan.git"
+  },
+  "keywords": [
+    "teknikbubblan"
+  ],
+  "author": "Samuel Forslund",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forsam/nyaTeknikbubblan/issues"
+  },
+  "homepage": "https://github.com/forsam/nyaTeknikbubblan#readme"
+}

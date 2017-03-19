@@ -51,3 +51,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+# Node modules!!
+node_modules
+
+# The ssl keys
+ssl/
