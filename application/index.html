@@ -7,19 +7,8 @@
   <script src="./socket.io/socket.io.js" charset="utf-8"></script>
 </head>
 <body>
-  <h1 id="h1">Some super stuff in here i tell you!!</h1>
-
-
-
-
-
-  <script type="text/javascript">
-    var h1 = document.getElementById('h1');
-    var socket = io();
-    socket.on('msg',(data) => {alert(data)});
-
-    h1.addEventListener('click',() => {socket.emit('click','I clicked a thing with id: ' + h1.id)})
-
-  </script>
+  <div class="navbar"></div>
+  <div class="baseContainer"></div>
+  <div class="footer"></div>
 </body>
 </html>

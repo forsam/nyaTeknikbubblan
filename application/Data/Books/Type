@@ -1,0 +1,7 @@
+{
+  "Id": "number",
+  "name": "string",
+  "pictures": "Array",
+  "price": "number",
+  "howMany": "number"
+}
