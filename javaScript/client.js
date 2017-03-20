@@ -1,6 +1,6 @@
 //Initiate the socket!
 const socket = io();
-
+var test = "";
 function basicFunction(){
   // Get the baseContainer!!
   const baseContainer = document.getElementById('baseContainer')
@@ -27,9 +27,13 @@ const updateBaseContainer = function(id){
 
 const setClientSocket = function(socket){
   socket.on('getBase',(data) => {
-    baseContainer.innerHTML = data.html + `<script>${data.js}</script>`;
-    console.log(data.html + `<script>${data.js}</script>`)
+    evalParts(data);
   })
+}
+
+function evalParts(data){
+  baseContainer.innerHTML = data.html;
+  eval('(' + data.js + ')()');
 }
 
 window.onload = basicFunction;

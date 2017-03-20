@@ -1,10 +1,11 @@
+
 module.exports =
 {
   html:`
-    <div id="test">I rule!!</div>
+    <div class="footer" id="test">I rule!!</div>
   `,
-  js:`
-    function(){
+  js: `
+    function() {
       var test = document.getElementById('test');
       test.addEventListener('click',() => alert('CLICKED'))
     }
