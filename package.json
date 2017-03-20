@@ -14,7 +14,8 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devsass": "gulp sass:watch",
+    "devnode": "nodemon server"
   },
   "repository": {
     "type": "git",

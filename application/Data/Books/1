@@ -1,1 +1,7 @@
-{"Id":1,"name":"Sagan","pictures":"Array","price":"number","howMany":"number"}
+{
+  "Id":1,
+  "name":"For dummies",
+  "pictures":"[forDummies.jpg]",
+  "price":"450",
+  "howMany":"15"
+}

@@ -1,47 +1,50 @@
-* {
+@import colors
+@import basicVariables
+
+*
   padding: 0;
   margin: 0px auto;
   text-decoration: none;
-  cursor: default; }
+  cursor: default;
 
-body {
-  background-color: #cccabb; }
+body
+  background-color: $silverGrey;
 
-.presentation {
-  background-color: #cccabb;
+.presentation
+  background-color: $silverGrey;
   display: block;
   height: 200px;
   width: 90%;
-  text-align: center; }
-  .presentation h1 {
+  text-align: center;
+  h1
     font-family: sans-serif;
     color: white;
-    padding-top: 100px; }
+    padding-top: 100px;
 
-.navbar {
+.navbar
   display: block;
   height: 100px;
   width: 90%;
   border-top: 2px solid white;
-  text-align: center; }
-  .navbar .navlink {
+  text-align: center;
+  .navlink
     color: white;
     display: inline-block;
     padding: 10 20;
     text-decoration: underline;
     font-size: 1.2em;
-    border-right: 2px solid white; }
-    .navbar .navlink:last-child {
-      border-right: none; }
-    .navbar .navlink:hover {
+    border-right: 2px solid white;
+    &:last-child
+      border-right: none;
+    &:hover
       cursor: pointer;
-      color: #fff028; }
+      color: $firstPrice;
 
-.footer {
+.footer
   display: block;
   height: 100px;
   width: 90%;
   border-top: 2px solid white;
   text-align: center;
   color: white;
-  font-size: 1.2em; }
+  font-size: 1.2em;

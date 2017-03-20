@@ -21,7 +21,7 @@ var getDataBase = function(path){
     getCollection: function(collectionName){
       var __collectionName = collectionName;
       var __path = this.path + collectionName + '/';
-
+      console.log('Collection: ' + __collectionName + ' was Getted!')
       collection = {
         exist: function(){
           return(fs.existsSync(__path));
@@ -74,9 +74,11 @@ var getDataBase = function(path){
         },
         typeCheck: function(obj){
           var type = this.getItemById('Type');
-          for(key in type){
-            obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
-          };
+          if(type.Id != 0){
+            for(key in type){
+              obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
+            };
+          }
           return obj;
         }
       }
