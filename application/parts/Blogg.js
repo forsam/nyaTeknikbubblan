@@ -1,13 +1,16 @@
-
 module.exports =
 {
   html:`
-    <div class="footer" id="test">I rule!!</div>
+    <div id="test">I rule!!</div>
+    <img src="image/forDummies.jpg" alt="forDummies"></img>
   `,
-  js: `
-    function() {
+  js:() => {
       var test = document.getElementById('test');
       test.addEventListener('click',() => alert('CLICKED'))
-    }
+  },
+  style:`
+  component{
+    background-color: white;
+  }
   `
 }

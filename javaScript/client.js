@@ -1,39 +1,41 @@
 //Initiate the socket!
 const socket = io();
-var test = "";
-function basicFunction(){
+
+
+function onloadFunction(){
   // Get the baseContainer!!
   const baseContainer = document.getElementById('baseContainer')
   // Set the socket!
   setClientSocket(socket);
 
   // Get the navlinks and add eventhandlers to them!
-  const links = document.querySelectorAll('.navlink');
-  for(let i = 0; i < links.length; i++){
-    links[i].addEventListener('click',linkHandeler)
+  const navlinks = document.querySelectorAll('.navlink');
+  for(let i = 0; i < navlinks.length; i++){
+    navlinks[i].addEventListener('click',navlinkHandler.click)
   }
 
 }
 
-const linkHandeler = function(event){
+// navlink eventhandlers!
+const navlinkHandler = {};
+navlinkHandler.click = (event) => {
   event.preventDefault();
-  updateBaseContainer(this.id)
+  socket.emit('getBase',{Id: event.target.id});
 }
 
-const updateBaseContainer = function(id){
-  console.log('inside the update base contatiner function with id: ' + id);
-  socket.emit('getBase',{Id: id});
-}
 
 const setClientSocket = function(socket){
   socket.on('getBase',(data) => {
-    evalParts(data);
+    let attachPoint = document.getElementById('baseContainer');
+    evalParts(data,attachPoint);
   })
 }
 
-function evalParts(data){
-  baseContainer.innerHTML = data.html;
+function evalParts(data,attachPoint){
+  // attach the html
+  attachPoint.innerHTML =  data.styledHtml;
+  // attach the javascript that comes with the component!
   eval('(' + data.js + ')()');
 }
 
-window.onload = basicFunction;
+window.onload = onloadFunction;
