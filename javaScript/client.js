@@ -1,10 +1,20 @@
-//Initiate the socket!
+// Initiate the socket!
 const socket = io();
+
+// Set the client socket!!
+const setClientSocket = function(socket){
+  socket.on('Component',(data) => {
+    let attachPoint = document.getElementById('base');
+    evalParts(data,attachPoint);
+  })
+  socket.on('Data',(data) => {
+    eval(data.callback);
+    dataCallback(data.data);
+  })
+}
 
 
 function onloadFunction(){
-  // Get the baseContainer!!
-  const baseContainer = document.getElementById('baseContainer')
   // Set the socket!
   setClientSocket(socket);
 
@@ -20,15 +30,7 @@ function onloadFunction(){
 const navlinkHandler = {};
 navlinkHandler.click = (event) => {
   event.preventDefault();
-  socket.emit('getBase',{Id: event.target.id});
-}
-
-
-const setClientSocket = function(socket){
-  socket.on('getBase',(data) => {
-    let attachPoint = document.getElementById('baseContainer');
-    evalParts(data,attachPoint);
-  })
+  socket.emit('getComponent',{Id: event.target.id});
 }
 
 function evalParts(data,attachPoint){

@@ -1,5 +1,4 @@
 const components = require(process.env.baseName + '/application/parts/shared/components.js');
-const dataBase = require(process.env.baseName + '/application/Data/dataBase.js')('application/Data');
 
 module.exports =
 {
@@ -8,18 +7,22 @@ module.exports =
     <div id="bookContainer"></div>
     <p>Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.</p>
   `,
-  js:() => {
-    let trueBooks = books;
-    // Grab the book objects!
-    let bookContainer = document.getElementsByClassName('bookContainer');
+  js:`
+    () => {
+      // Fetch needed data
+      function dataCallback(data){
+        let html = '';
+        for(let i = 0; i < data.length; i++){
+          console.log(data[i].pictures[0])
+          html += '<img src="image/' + data[i].pictures[0] + '"></img>'
+        }
+        document.getElementById('bookContainer').innerHTML = html;
+      }
 
-    console.log(trueBooks);
-    // Add eventlisteners to the books!
-    for(let i = 0; i < books.length; i++){
-      books[i].addEventListener('click',() => {
-        alert('works')});
-    };
-  },
+      let getData = ${components.getData};
+      getData(socket,{collection:'Books',Id:['1','2']},dataCallback);
+    }
+  `,
   style:`
   component{
     background-color: white;
