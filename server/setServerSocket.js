@@ -32,6 +32,7 @@ function setTheSockets(io){
     socket.on('getData',dataHandler.onGetData);
     socket.on('changeData',dataHandler.onChangeData);
     socket.on('addData',dataHandler.onAddData);
+    socket.on('uploadPicture',dataHandler.onUploadPicture);
   })
 }
 
@@ -61,6 +62,11 @@ dataHandler.onChangeData = function (data){
 dataHandler.onAddData = function (data){
   let collection = dataBase.getCollection(data.collection);
   collection.addItem(data);
+}
+dataHandler.onUploadPicture = function (data){
+  console.log(data)
+  console.log(data.file);
+  fs.writeFileSync(process.env.baseName + '/application/pictures/' + data.name + '.jpg', data.file);
 }
 
 

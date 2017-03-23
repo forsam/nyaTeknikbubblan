@@ -25,7 +25,7 @@ module.exports =
   `,
   style:`
   component{
-    background-color: white;
+    background-color: red;
     width: 80%;
     margin: 0px auto;
     border-radius: 20px;

@@ -14,5 +14,10 @@ module.exports ={
   },
   addData: function(data){
     socket.emit('addData',data);
+  },
+  uploadPicture: function(data){
+    console.log(data);
+    socket.emit('uploadPicture',data);
   }
+
 }
