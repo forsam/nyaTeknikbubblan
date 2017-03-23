@@ -5,22 +5,22 @@ function getComponent(Id){
   // Get the file!!
   let file = require(process.env.baseName + '/application/parts/' + Id + '.js');
   // Create data object!
-  let data = {};
-  //data.js = file.js.toString();
-  data.js = file.js;
-  data.style = file.style.replace(/component/g, '.' + Id);
-  data.html = file.html;
+  let component = {};
+  component.js = file.js;
+  component.style = file.style.replace(/component/g, '.' + Id);
+  component.html = file.html;
   // Make it more compact!;
-  data.styledHtml = `<div class="${Id}">${data.html}</div><style>${data.style}</style>`;
-  return data;
+  component.styledHtml = `<div class="${Id}">${component.html}</div><style>${component.style}</style>`;
+  return component;
 }
 
 function setTheSockets(io){
   io.on('connection',function(socket){
     socket.emit('msg', 'You are connected!!')
 
-    socket.on('getComponent',function(data){
-      let component = getComponent(data.Id);
+    socket.on('getComponent',function(componentData){
+      let component = getComponent(componentData.Id);
+      component.attachId = componentData.attachId;
       socket.emit('Component',component);
     })
     socket.on('getData',function(data){

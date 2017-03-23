@@ -9,8 +9,8 @@ const fs = require('fs');
 // Basic server options!
 const port = 443;
 const httpsOptions = {
-  key: fs.readFileSync('./ssl/privkey.pem'),
-  cert: fs.readFileSync('./ssl/cert.pem')
+  key: fs.readFileSync('./server/ssl/privkey.pem'),
+  cert: fs.readFileSync('./server/ssl/cert.pem')
 }
 
 // This is the basic application, how the website rutes stuff!
@@ -22,8 +22,8 @@ var server = https.createServer(httpsOptions,application).listen(port,function()
 });
 
 const io = require('socket.io')(server); // This is the websocket helping stuff!!
-const setTheSockets = require('./setSocket.js'); // This is code for the Sockets!
+const setTheSockets = require('./server/setServerSocket.js'); // This is code for the Sockets!
 setTheSockets(io); // This sets all sockets emit stuff!!
 
 // Redirect from http port 80 to https
-//require('./redirect.js');
+//require('./server/redirect.js');
