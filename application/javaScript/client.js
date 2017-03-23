@@ -7,7 +7,6 @@ function onloadFunction(){
   for(let i = 0; i < navlinks.length; i++){
     navlinks[i].addEventListener('click',navlinkHandler.click)
   }
-
 }
 
 // navlink eventhandlers!

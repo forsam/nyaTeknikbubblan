@@ -35,23 +35,22 @@ var getDataBase = function(path){
             return {Id: 0};
           }
         },
-
         changeItemById: function(Id, obj){
           var Item = this.getItemById(Id);
           if(Item.Id === 0){
             console.log('Trying to change a nonexisting Item!')
-            return;
+            return 0;
           }
           var path = __path + Item.Id;
           for(key in obj){
             if(key !== Id){
               Item[key] = obj[key];
-            };
-          };
+            }
+          }
           fs.writeFileSync(path, JSON.stringify(Item));
-          console.log('The item has been changed!')
+          console.log('The item has been changed!');
+          return 1;
         },
-
         addItem: function(obj){
           obj = this.typeCheck(obj);
           var path = __path + obj.Id;
@@ -62,7 +61,6 @@ var getDataBase = function(path){
             console.log('The item: ' + obj.Id + ' has been added!');
           }
         },
-
         deleteItemById: function(Id){
           var path = __path + Id;
           if(fs.existsSync(path)){
@@ -74,11 +72,13 @@ var getDataBase = function(path){
         },
         typeCheck: function(obj){
           var type = this.getItemById('Type');
+          this.changeItemById('Type',{nextId: type.nextId++});
           if(type.Id != 0){
             for(key in type){
               obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
             };
           }
+          obj.Id = type.nextId;
           return obj;
         }
       }

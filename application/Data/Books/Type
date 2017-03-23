@@ -3,5 +3,6 @@
   "name": "string",
   "pictures": "Array",
   "price": "number",
-  "howMany": "number"
+  "howMany": "number",
+  "nextId": 3
 }
