@@ -1,6 +1,8 @@
+// Require things!
 const fs = require('fs');
 const dataBase = require(process.env.baseName + '/application/Data/dataBase.js')('application/Data');
 
+// extensive functions!
 function getComponent(Id){
   // Get the file!!
   let path = process.env.baseName + '/application/components/' + Id + '.js';
@@ -26,6 +28,7 @@ function getComponent(Id){
   }
 }
 
+// Setting the sockets!
 function setTheSockets(io){
   io.on('connection',function(socket){
     socket.on('getComponent',componentHandler.onGetComponent);
@@ -57,14 +60,13 @@ dataHandler.onGetData = function (data){
 }
 dataHandler.onChangeData = function (data){
   let collection = dataBase.getCollection(data.collection);
-  collection.changeItemById(data.Id,data);
+  collection.changeItemById(data.Id,data.data);
 }
 dataHandler.onAddData = function (data){
   let collection = dataBase.getCollection(data.collection);
-  collection.addItem(data);
+  collection.addItem(data.data);
 }
 dataHandler.onUploadPicture = function (data){
-  console.log(data)
   console.log(data.file);
   fs.writeFileSync(process.env.baseName + '/application/pictures/' + data.name + '.jpg', data.file);
 }

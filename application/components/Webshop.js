@@ -1,18 +1,20 @@
 module.exports =
 {
   html:`
-    <div id="test">I rule!!</div>
-    <img src="image/forDummies.jpg" alt="forDummies"></img>
+    <h1>The webshop!</h1>
   `,
   js:`
     () => {
-      var test = document.getElementById('test');
-      test.addEventListener('click',() => alert('CLICKED'))
+      
     }
   `,
   style:`
   component{
     background-color: white;
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 20px;
+    text-align: center;
   }
   `
 }

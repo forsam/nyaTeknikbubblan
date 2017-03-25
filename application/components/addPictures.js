@@ -22,7 +22,7 @@ module.exports =
       reader.addEventListener('loadend',() => {
         uploadPicture({file: reader.result, name: tmpName});
       })
-      reader.readAsDataURL(img.files[0]);
+      reader.readAsArrayBuffer(img.files[0]);
       img.value = "";
       imgName.value ="";
     })
@@ -30,7 +30,7 @@ module.exports =
   `,
   style:`
   component{
-    background-color: red;
+    background-color: white;
     width: 80%;
     margin: 0px auto;
     border-radius: 20px;

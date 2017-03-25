@@ -1,3 +1,5 @@
+const components = require(process.env.baseName + '/application/components/shared/components.js');
+
 module.exports =
 {
   html:`
@@ -8,20 +10,25 @@ module.exports =
     <div id="likeWebshop"></div>
     <h2>this is the blogg layout component!!</h2>
     <div id="likeBlogg"></div>
+    <h2>this is the addPicture component!!</h2>
+    <div id="likePicture"></div>
   `,
   js:`
     () => {
-      socket.emit('getComponent',{Id: "Home", attachId: 'likeHome'});
-      socket.emit('getComponent',{Id: "Webshop", attachId: 'likeWebshop'});
-      socket.emit('getComponent',{Id: "Blogg", attachId: 'likeBlogg'});
+      let getComponent = ${components.getComponent}
+      getComponent({Id: "Home", attachId: 'likeHome'});
+      getComponent({Id: "Webshop", attachId: 'likeWebshop'});
+      getComponent({Id: "Blogg", attachId: 'likeBlogg'});
+      getComponent({Id: "addPictures", attachId: 'likePicture'});
     }
   `,
   style:`
   component{
     background-color: white;
-  }
-  component #test{
-    background-color: black;
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 20px;
+    text-align: center;
   }
   `
 }
