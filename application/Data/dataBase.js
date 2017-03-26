@@ -56,9 +56,11 @@ var getDataBase = function(path){
           var path = __path + obj.Id;
           if(fs.existsSync(path)){
             console.log('The item: ' + obj.Id + ' already exists!');
+            return false;
           }else{
             fs.writeFileSync(path, JSON.stringify(obj));
             console.log('The item: ' + obj.Id + ' has been added!');
+            return true;
           }
         },
         deleteItemById: function(Id){
@@ -72,17 +74,18 @@ var getDataBase = function(path){
         },
         typeCheck: function(obj){
           var type = this.getItemById('Type');
-          this.changeItemById('Type',{nextId: type.nextId++});
+          this.changeItemById('Type',{nextId: type.nextId + 1});
           if(type.Id != 0){
             for(key in type){
-              if(key !== 'maps'){
+              if(key !== 'maps' && key !== 'nextId'){
                 obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
-              }else{
-                for(map in obj[key]){
-                  let mappingInfo = obj[key][map].split(' ');
+              }else if(key === 'maps'){
+                for(map in type[key]){
+                  let mappingInfo = type[key][map].split(' ');
                   let theMap = this.getItemById(map);
-                  theMap[obj[key][mappingInfo[0]]] = obj[key][mappingInfo[1]];
-                  this.changeItemById(map);
+                  console.log(obj)
+                  theMap[obj[mappingInfo[0]]] = type.nextId;
+                  this.changeItemById(map,theMap);
                 }
               }
             }

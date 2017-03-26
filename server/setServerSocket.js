@@ -18,6 +18,8 @@ function setTheSockets(io){
     socket.on('uploadPicture',dataHandler.onUploadPicture);
 
     socket.on('loginUser',userHandler.onLoginUser);
+    socket.on('loggedIn',userHandler.onLoggedIn);
+    socket.on('submitUser',userHandler.onSubmitUser);
   })
 }
 

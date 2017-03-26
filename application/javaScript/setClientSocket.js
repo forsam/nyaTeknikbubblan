@@ -7,11 +7,22 @@ const setClientSocket = function(socket){
   socket.on('Component',onComponent);
   socket.on('Data', onData);
   socket.on('Login', onLogin);
+  socket.on('loggedIn',onLoggedIn);
+  socket.on('submitUser',onSubmitUser);
 }
 
 // Event handlers!!
-function onLogin(data){
-  alert(data);
+function onSubmitUser(callback,passed){
+  eval(callback);
+  dataCallback(passed);
+}
+function onLoggedIn(data){
+  eval(data.callback);
+  dataCallback(data.loggedIn);
+}
+function onLogin(data,callback,passed){
+  eval(callback);
+  dataCallback(passed);
 }
 function onComponent(component){
 

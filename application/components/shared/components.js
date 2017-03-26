@@ -35,9 +35,16 @@ module.exports ={
     }
   },
   userManager: {
-    loginUser: function(data){
+    loginUser: function(data,callback){
       // data object is {username: "Username", "password: "Password"}
-      socket.emit('loginUser',data);
+      socket.emit('loginUser',data,callback.toString());
+    },
+    loggedIn: function(callback){
+      socket.emit('loggedIn',callback.toString());
+    },
+    submitUser: function(data,callback){
+      // data object is {username: "Username", "password: "Password"}
+      socket.emit('submitUser',data,callback.toString());
     }
   }
 }

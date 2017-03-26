@@ -4,17 +4,29 @@ module.exports =
 {
   html:`
     <h1>Welcome try to login my friend!</h1>
-    <input type="text" id="username"><br />
-    <input type="text" id="password"><br />
-    <div class="btn" id="submitBtn">Login Button</div>
+    <div id="loginMount">
+      <input type="text" id="username"><br />
+      <input type="text" id="password"><br />
+      <div class="btn" id="submitBtn">Login Button</div>
+    </div>
+
 
   `,
   js:`
     () => {
 
+      function dataCallback(loggedIn){
+        if(loggedIn){
+          document.getElementById('loginMount').innerHTML = "You are logged in now!";
+        }else{
+          let getAndAttachComponent = ${components.componentManager.getAndAttachComponent};
+          document.getElementById('loginMount').innerHTML = "";
+          getAndAttachComponent({Id:"Submit",attachId:"loginMount"});
+        }
+      }
+
       function loginEventHandler(){
-        console.log(username.value);
-        loginUser({username: username.value,password: password.value});
+        loginUser({username: username.value,password: password.value},dataCallback);
       }
 
       let loginBtn = document.getElementById('submitBtn');
