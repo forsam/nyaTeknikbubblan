@@ -1,0 +1,13 @@
+{
+  "Id": "number",
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string",
+  "username": "string",
+  "password": "string",
+  "profilePic": "string",
+  "nextId": 2,
+  "maps": {
+    "Usermap": "username Id"
+  }
+}

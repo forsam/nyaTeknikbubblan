@@ -75,8 +75,17 @@ var getDataBase = function(path){
           this.changeItemById('Type',{nextId: type.nextId++});
           if(type.Id != 0){
             for(key in type){
-              obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
-            };
+              if(key !== 'maps'){
+                obj[key]? (obj[key] = obj[key]) : (obj[key] = type[key]);
+              }else{
+                for(map in obj[key]){
+                  let mappingInfo = obj[key][map].split(' ');
+                  let theMap = this.getItemById(map);
+                  theMap[obj[key][mappingInfo[0]]] = obj[key][mappingInfo[1]];
+                  this.changeItemById(map);
+                }
+              }
+            }
           }
           obj.Id = type.nextId;
           return obj;

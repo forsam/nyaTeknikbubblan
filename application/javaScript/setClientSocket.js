@@ -6,9 +6,13 @@ const setClientSocket = function(socket){
   socket.on('AttachComponent', onAttachComponent);
   socket.on('Component',onComponent);
   socket.on('Data', onData);
+  socket.on('Login', onLogin);
 }
 
 // Event handlers!!
+function onLogin(data){
+  alert(data);
+}
 function onComponent(component){
 
 }

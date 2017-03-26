@@ -33,5 +33,11 @@ module.exports ={
       // data object is {Id: "FilenamePath"}
       socket.emit('getComponent',data);
     }
+  },
+  userManager: {
+    loginUser: function(data){
+      // data object is {username: "Username", "password: "Password"}
+      socket.emit('loginUser',data);
+    }
   }
 }
