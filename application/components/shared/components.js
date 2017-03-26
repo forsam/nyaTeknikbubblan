@@ -5,26 +5,33 @@ module.exports ={
     $firstPrice: '#fff028',
     $silverGrey: '#cccabb'
   },
-  getData: function(data,callback){
-    // data object is {collection: "CollectionName", Id: "ItemId"}
-    data.callback = callback.toString();
-    socket.emit('getData',data);
+  dataManager: {
+    getData: function(data,callback){
+      // data object is {collection: "CollectionName", Id: "ItemId"}
+      data.callback = callback.toString();
+      socket.emit('getData',data);
+    },
+    changeData: function(data){
+      // data object is {collection: "CollectionName", data: obj, Id: "ItemId"}
+      socket.emit('changeData',data);
+    },
+    addData: function(data){
+      // data object is {collection: "CollectionName", data: obj}
+      socket.emit('addData',data);
+    },
+    uploadPicture: function(data){
+      // data object is {file: FileReader().result, name: saveName}
+      socket.emit('uploadPicture',data);
+    }
   },
-  changeData: function(data){
-    // data object is {collection: "CollectionName", data: obj, Id: "ItemId"}
-    socket.emit('changeData',data);
-  },
-  addData: function(data){
-    // data object is {collection: "CollectionName", data: obj}
-    socket.emit('addData',data);
-  },
-  uploadPicture: function(data){
-    // data object is {file: FileReader().result, name: saveName}
-    socket.emit('uploadPicture',data);
-  },
-  getComponent: function(data){
-    // data object is {Id: "FilenamePath", attachId: "elementId"}
-    socket.emit('getComponent',data);
+  componentManager: {
+    getAndAttachComponent: function(data){
+      // data object is {Id: "FilenamePath", attachId: "elementId"}
+      socket.emit('getAndAttachComponent',data);
+    },
+    getComponent: function (data){
+      // data object is {Id: "FilenamePath"}
+      socket.emit('getComponent',data);
+    }
   }
-
 }

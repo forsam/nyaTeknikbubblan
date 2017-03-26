@@ -13,7 +13,7 @@ function onloadFunction(){
 const navlinkHandler = {};
 navlinkHandler.click = (event) => {
   event.preventDefault();
-  socket.emit('getComponent',{Id: event.target.id, attachId: 'base'});
+  socket.emit('getAndAttachComponent',{Id: event.target.id, attachId: 'base'});
 }
 
 window.onload = onloadFunction;

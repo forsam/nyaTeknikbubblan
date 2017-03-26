@@ -3,16 +3,22 @@ const socket = io();
 
 // Set the client socket!!
 const setClientSocket = function(socket){
-  socket.on('Component', onComponent);
+  socket.on('AttachComponent', onAttachComponent);
+  socket.on('Component',onComponent);
   socket.on('Data', onData);
 }
 
 // Event handlers!!
 function onComponent(component){
+
+}
+function onAttachComponent(component){
   let attachPoint = document.getElementById(component.attachId);
   renderComponent(component,attachPoint);
 }
+
 function onData(data){
+  console.log('before eval')
   eval(data.callback);
   dataCallback(data.data);
 }

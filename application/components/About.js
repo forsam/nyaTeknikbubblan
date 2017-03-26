@@ -15,11 +15,11 @@ module.exports =
   `,
   js:`
     () => {
-      let getComponent = ${components.getComponent}
-      getComponent({Id: "Home", attachId: 'likeHome'});
-      getComponent({Id: "Webshop", attachId: 'likeWebshop'});
-      getComponent({Id: "Blogg", attachId: 'likeBlogg'});
-      getComponent({Id: "addPictures", attachId: 'likePicture'});
+      let getAndAttachComponent = ${components.componentManager.getAndAttachComponent}
+      getAndAttachComponent({Id: "Home", attachId: 'likeHome'});
+      getAndAttachComponent({Id: "Webshop", attachId: 'likeWebshop'});
+      getAndAttachComponent({Id: "Blogg", attachId: 'likeBlogg'});
+      getAndAttachComponent({Id: "addPictures", attachId: 'likePicture'});
     }
   `,
   style:`

@@ -18,8 +18,8 @@ module.exports =
         document.getElementById('bookContainer').innerHTML = html;
       }
 
-      let getData = ${components.getData};
-      getData(socket,{collection:'Books',Id:['1','2']},dataCallback);
+      let getData = ${components.dataManager.getData};
+      getData({collection:'Books',Id:['1','2']},dataCallback);
     }
   `,
   style:`

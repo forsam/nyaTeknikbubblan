@@ -14,7 +14,7 @@ module.exports =
     let imgBtn = document.getElementById('imgBtn');
     let img = document.getElementById('img');
 
-    let uploadPicture = ${components.uploadPicture}
+    let uploadPicture = ${components.dataManager.uploadPicture}
 
     imgBtn.addEventListener('click',() => {
       let reader = new FileReader();
