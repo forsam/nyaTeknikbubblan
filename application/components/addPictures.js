@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -14,13 +12,11 @@ module.exports =
     let imgBtn = document.getElementById('imgBtn');
     let img = document.getElementById('img');
 
-    let uploadPicture = ${components.dataManager.uploadPicture}
-
     imgBtn.addEventListener('click',() => {
       let reader = new FileReader();
       let tmpName = imgName.value;
       reader.addEventListener('loadend',() => {
-        uploadPicture({file: reader.result, name: tmpName});
+        machina.dataManager.uploadPicture.send({file: reader.result, name: tmpName});
       })
       reader.readAsArrayBuffer(img.files[0]);
       img.value = "";
@@ -46,7 +42,7 @@ module.exports =
     border: 5px solid black;
   }
   component h1{
-    color: ${components.colors.$silverGrey};
+    color: machina.colors.$silverGrey;
   }
   component p{
     width: 80%;

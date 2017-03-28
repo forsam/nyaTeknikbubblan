@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -19,21 +17,19 @@ module.exports =
         if(loggedIn){
           document.getElementById('loginMount').innerHTML = "You are logged in now!";
         }else{
-          let getAndAttachComponent = ${components.componentManager.getAndAttachComponent};
           document.getElementById('loginMount').innerHTML = "";
-          getAndAttachComponent({Id:"Submit",attachId:"loginMount"});
+          machina.componentManager.getAndAttachComponent.send({Id:"Submit",attachId:"loginMount"});
         }
       }
 
       function loginEventHandler(){
-        loginUser({username: username.value,password: password.value},dataCallback);
+        machina.userManager.loginUser.send({username: username.value,password: password.value},dataCallback);
       }
 
       let loginBtn = document.getElementById('submitBtn');
       let username = document.getElementById('username');
       let password = document.getElementById('password');
 
-      let loginUser = ${components.userManager.loginUser};
       loginBtn.addEventListener('click',loginEventHandler)
     }
   `,
@@ -55,7 +51,7 @@ module.exports =
     border: 5px solid black;
   }
   component h1{
-    color: ${components.colors.$silverGrey};
+    color: machina.colors.$silverGrey;
   }
   component p{
     width: 80%;

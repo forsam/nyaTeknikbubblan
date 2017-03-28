@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -14,13 +12,10 @@ module.exports =
           body: collections
         }
 
-        let getAndAttachComponent = ${components.componentManager.getAndAttachComponent};
-        getAndAttachComponent({Id:"miniComponents/dropdownlist", attachId:"dropdownlist", properties: dropdownProperties});
+        machina.componentManager.getAndAttachComponent.send({Id:"miniComponents/dropdownlist", attachId:"dropdownlist", properties: dropdownProperties});
       }
 
-      let getCollections = ${components.dataManager.getCollections}
-      getCollections(dataCallback);
-
+      machina.dataManager.getCollections.send(dataCallback);
 
     }
   `,

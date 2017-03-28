@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -23,7 +21,7 @@ module.exports =
 
       function submitEventHandler(){
         if(email.value && lastname.value && firstname.value && password && username){
-          submitUser(
+          machina.userManager.submitUser.send(
             {
               username: username.value,
               password: password.value,
@@ -44,7 +42,6 @@ module.exports =
       let firstname = document.getElementById('firstname');
       let lastname = document.getElementById('lastname');
 
-      let submitUser = ${components.userManager.submitUser};
       submitBtn.addEventListener('click',submitEventHandler)
     }
   `,
@@ -66,7 +63,7 @@ module.exports =
     border: 5px solid black;
   }
   component h1{
-    color: ${components.colors.$silverGrey};
+    color: machina.colors.$silverGrey;
   }
   component p{
     width: 80%;

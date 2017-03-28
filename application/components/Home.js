@@ -1,15 +1,13 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
     <h1>Welcome</h1>
     <div id="bookContainer"></div>
   `,
-  js:`
-    () => {
+  js:
+  () => {
       // Fetch needed data
-      function dataCallback(data){
+      var dataCallback = function(data){
         let html = '';
         for(let i = 0; i < data.length; i++){
           console.log(data[i])
@@ -18,13 +16,12 @@ module.exports =
         document.getElementById('bookContainer').innerHTML = html;
       }
 
-      let getData = ${components.dataManager.getData};
-      getData({collection:'Books',Id:['1','2']},dataCallback);
+      machina.dataManager.getData.send({collection:'Books',Id:['1','2']},dataCallback);
     }
-  `,
+  ,
   style:`
   component{
-    background-color: white;
+    background-color: green;
     width: 80%;
     margin: 0px auto;
     border-radius: 20px;
@@ -40,7 +37,7 @@ module.exports =
     border: 5px solid black;
   }
   component h1{
-    color: ${components.colors.$silverGrey};
+    color: machina.colors.$silverGrey;
   }
   component p{
     width: 80%;

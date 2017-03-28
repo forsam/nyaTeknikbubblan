@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -8,7 +6,6 @@ module.exports =
   `,
   js:`
     () => {
-      let loggedIn = ${components.userManager.loggedIn}
       function dataCallback (loggedIn){
         if(loggedIn){
           document.getElementById('loggedInContent').innerHTML = 'LOGGED IN';
@@ -16,7 +13,7 @@ module.exports =
           document.getElementById('loggedInContent').innerHTML = 'NOT LOGGED IN';
         }
       }
-      loggedIn(dataCallback)
+      machina.userManager.loggedIn.send(dataCallback)
     }
   `,
   style:`

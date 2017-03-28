@@ -1,19 +1,12 @@
+const socket = io();
+const machina = new socketManager(socket);
+
 function onloadFunction(){
-  // Set the socket!
-  setClientSocket(socket);
 
-  // Get the navlinks and add eventhandlers to them!
-  const navlinks = document.querySelectorAll('.navlink');
-  for(let i = 0; i < navlinks.length; i++){
-    navlinks[i].addEventListener('click',navlinkHandler.click)
-  }
+  machina.componentManager.getAndAttachComponent.send({Id:'base',attachId: 'attach'});
+  machina.componentManager.getAndAttachComponent.send({Id:'base',attachId: 'attach2'});
 }
 
-// navlink eventhandlers!
-const navlinkHandler = {};
-navlinkHandler.click = (event) => {
-  event.preventDefault();
-  socket.emit('getAndAttachComponent',{Id: event.target.id, attachId: 'base'});
-}
+
 
 window.onload = onloadFunction;

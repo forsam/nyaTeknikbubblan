@@ -1,5 +1,4 @@
 // Require things!
-const dataBase = require(process.env.baseName + '/application/Data/dataBase.js')('application/Data');
 const componentHandler = require(process.env.baseName + '/server/socketHandlers/componentHandler.js');
 const dataHandler = require(process.env.baseName + '/server/socketHandlers/dataHandler.js');
 const userHandler = require(process.env.baseName + '/server/socketHandlers/userHandler.js');

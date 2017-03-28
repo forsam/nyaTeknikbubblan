@@ -1,5 +1,3 @@
-const components = require(process.env.baseName + '/application/components/shared/components.js');
-
 module.exports =
 {
   html:`
@@ -10,16 +8,13 @@ module.exports =
     <div id="likeWebshop"></div>
     <h2>this is the blogg layout component!!</h2>
     <div id="likeBlogg"></div>
-    <h2>this is the addPicture component!!</h2>
-    <div id="likePicture"></div>
   `,
   js:`
     () => {
-      let getAndAttachComponent = ${components.componentManager.getAndAttachComponent}
-      getAndAttachComponent({Id: "Home", attachId: 'likeHome'});
-      getAndAttachComponent({Id: "Webshop", attachId: 'likeWebshop'});
-      getAndAttachComponent({Id: "Blogg", attachId: 'likeBlogg'});
-      getAndAttachComponent({Id: "addPictures", attachId: 'likePicture'});
+      machina.componentManager.getAndAttachComponent.send({Id: "Home", attachId: 'likeHome'});
+      machina.componentManager.getAndAttachComponent.send({Id: "Webshop", attachId: 'likeWebshop'});
+      machina.componentManager.getAndAttachComponent.send({Id: "Blogg", attachId: 'likeBlogg'});
+      machina.componentManager.getAndAttachComponent.send({Id: "addPictures", attachId: 'likePicture'});
     }
   `,
   style:`

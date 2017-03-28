@@ -9,11 +9,11 @@ module.exports = {
       let user = users.getItemById(usermap[data.username]);
       if(user.password === data.password){
         this.loggedIn = true;
-        this.emit('Login', user,callback,true);
+        this.emit('loginUser', user,callback,true);
       }
     }else{
       let failString = 'password or username is wrong!';
-      this.emit('Login', failString,callback,false);
+      this.emit('loginUser', failString,callback,false);
     }
   },
   onLoggedIn: function(callback){

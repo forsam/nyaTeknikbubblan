@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
   onGetCollections: function (callback){
     let collections = dataBase.getCollections();
-    this.emit('Collections',callback,collections);
+    this.emit('getCollections',callback,collections);
   },
   onGetData: function (data){
     let collection = dataBase.getCollection(data.collection);
@@ -12,19 +12,22 @@ module.exports = {
     for(let i = 0; i < data.Id.length; i++){
       tmpData.data[i] = collection.getItemById(data.Id[i]);
     }
-    this.emit('Data',tmpData);
+    this.emit('getData',tmpData);
   },
   onChangeData: function (data){
     let collection = dataBase.getCollection(data.collection);
     collection.changeItemById(data.Id,data.data);
+    this.emit('changeData');
   },
   onAddData: function (data){
     let collection = dataBase.getCollection(data.collection);
     collection.addItem(data.data);
+    this.emit('addData');
   },
   onUploadPicture: function (data){
     console.log(data.file);
     fs.writeFileSync(process.env.baseName + '/application/pictures/' + data.name + '.jpg', data.file);
+    this.emit('uploadPicture');
   }
 
 }

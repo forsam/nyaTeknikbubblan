@@ -3,12 +3,12 @@ const fs = require('fs');
 module.exports = {
   onGetComponent: function (componentData){
     let component = getComponent(componentData.Id);
-    this.emit('Component',component);
+    this.emit('getComponent',component);
   },
   onGetAndAttachComponent: function (componentData){
     let component = getComponent(componentData.Id, componentData.properties);
     component.attachId = componentData.attachId;
-    this.emit('AttachComponent',component);
+    this.emit('getAndAttachComponent',component);
   }
 }
 
@@ -22,7 +22,7 @@ function getComponent(Id, properties){
   if(fs.existsSync(path)){
     let file = require(path);
     delete require.cache[require.resolve(path)];
-    component.js = file.js;
+    component.js = file.js.toString();
     if(file.properties){
       component.js = component.js.replace('INSERTPROPERTIES', JSON.stringify(properties) || file.properties);
     }
