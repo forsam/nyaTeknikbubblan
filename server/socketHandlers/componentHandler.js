@@ -6,14 +6,14 @@ module.exports = {
     this.emit('Component',component);
   },
   onGetAndAttachComponent: function (componentData){
-    let component = getComponent(componentData.Id);
+    let component = getComponent(componentData.Id, componentData.properties);
     component.attachId = componentData.attachId;
     this.emit('AttachComponent',component);
   }
 }
 
 // extensive functions!
-function getComponent(Id){
+function getComponent(Id, properties){
   // Get the file!!
   let path = process.env.baseName + '/application/components/' + Id + '.js';
   // Create data object!
@@ -23,6 +23,9 @@ function getComponent(Id){
     let file = require(path);
     delete require.cache[require.resolve(path)];
     component.js = file.js;
+    if(file.properties){
+      component.js = component.js.replace('INSERTPROPERTIES', JSON.stringify(properties) || file.properties);
+    }
     component.style = file.style.replace(/component/g, '.' + Id);
     component.html = file.html;
     // Make it more compact!;

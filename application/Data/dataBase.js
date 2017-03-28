@@ -4,6 +4,11 @@ var getDataBase = function(path){
   return({
     path: process.env.baseName + '/' + path + '/',
 
+    getCollections: function(){
+      let collections = JSON.parse(fs.readFileSync(this.path + 'collections', 'utf8'));
+      return collections.Array;
+    },
+
     addCollection: function(collectionName,collectionType){
       if(!this.getCollection(collectionName).exist()){
         var collectionPath = this.path + collectionName + '/';

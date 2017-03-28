@@ -9,9 +9,14 @@ const setClientSocket = function(socket){
   socket.on('Login', onLogin);
   socket.on('loggedIn',onLoggedIn);
   socket.on('submitUser',onSubmitUser);
+  socket.on('Collections',onCollections);
 }
 
 // Event handlers!!
+function onCollections(callback, collections){
+  eval(callback);
+  dataCallback(collections);
+}
 function onSubmitUser(callback,passed){
   eval(callback);
   dataCallback(passed);

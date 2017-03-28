@@ -6,6 +6,9 @@ module.exports ={
     $silverGrey: '#cccabb'
   },
   dataManager: {
+    getCollections: function(callback){
+      socket.emit('getCollections',callback.toString());
+    },
     getData: function(data,callback){
       // data object is {collection: "CollectionName", Id: "ItemId"}
       data.callback = callback.toString();
@@ -26,7 +29,7 @@ module.exports ={
   },
   componentManager: {
     getAndAttachComponent: function(data){
-      // data object is {Id: "FilenamePath", attachId: "elementId"}
+      // data object is {Id: "FilenamePath", attachId: "elementId", properties: object}
       socket.emit('getAndAttachComponent',data);
     },
     getComponent: function (data){

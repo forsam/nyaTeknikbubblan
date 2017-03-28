@@ -16,6 +16,7 @@ function setTheSockets(io){
     socket.on('changeData',dataHandler.onChangeData);
     socket.on('addData',dataHandler.onAddData);
     socket.on('uploadPicture',dataHandler.onUploadPicture);
+    socket.on('getCollections',dataHandler.onGetCollections);
 
     socket.on('loginUser',userHandler.onLoginUser);
     socket.on('loggedIn',userHandler.onLoggedIn);

@@ -2,6 +2,10 @@ const dataBase = require(process.env.baseName + '/application/Data/dataBase.js')
 const fs = require('fs');
 
 module.exports = {
+  onGetCollections: function (callback){
+    let collections = dataBase.getCollections();
+    this.emit('Collections',callback,collections);
+  },
   onGetData: function (data){
     let collection = dataBase.getCollection(data.collection);
     let tmpData = {data: [], callback: data.callback};
