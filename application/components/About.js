@@ -9,14 +9,14 @@ module.exports =
     <h2>this is the blogg layout component!!</h2>
     <div id="likeBlogg"></div>
   `,
-  js:`
+  js:
     () => {
       machina.componentManager.getAndAttachComponent.send({Id: "Home", attachId: 'likeHome'});
       machina.componentManager.getAndAttachComponent.send({Id: "Webshop", attachId: 'likeWebshop'});
       machina.componentManager.getAndAttachComponent.send({Id: "Blogg", attachId: 'likeBlogg'});
       machina.componentManager.getAndAttachComponent.send({Id: "addPictures", attachId: 'likePicture'});
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;

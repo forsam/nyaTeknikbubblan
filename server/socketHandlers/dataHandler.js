@@ -2,9 +2,9 @@ const dataBase = require(process.env.baseName + '/application/Data/dataBase.js')
 const fs = require('fs');
 
 module.exports = {
-  onGetCollections: function (callback){
+  onGetCollections: function (data){
     let collections = dataBase.getCollections();
-    this.emit('getCollections',callback,collections);
+    this.emit('getCollections',collections);
   },
   onGetData: function (data){
     let collection = dataBase.getCollection(data.collection);
@@ -29,5 +29,8 @@ module.exports = {
     fs.writeFileSync(process.env.baseName + '/application/pictures/' + data.name + '.jpg', data.file);
     this.emit('uploadPicture');
   }
+}
+
+function send(){
 
 }

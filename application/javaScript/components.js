@@ -10,49 +10,76 @@ const socketManager = function(socket){
   this.dataManager = {
 
     getCollections: {
-      send: function(callback){
-        socket.emit('getCollections',sendCallback(callback));
+      send: function(data,callback){
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
-      receive: function(callback, collections){
-        evalCallback(callback,collections);
-      }
+      receive: function(data){
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
+      },
+      pingerString: 'getCollections'
     },
 
     getData: {
+      pingerString: 'getData',
       send: function(data,callback){
         // data object is {collection: "CollectionName", Id: "ItemId"}
-        data.callback = sendCallback(callback);
-        socket.emit('getData',data);
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
       receive: function(data){
-        evalCallback(data.callback,data.data);
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     addData: {
-      send: function(data){
+      pingerString: 'addData',
+      send: function(data,callback){
         // data object is {collection: "CollectionName", data: obj}
-        socket.emit('addData',data);
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
-      receive: function(){
+      receive: function(data){
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     changeData: {
-      send: function(data){
+      pingerString: 'changeData',
+      send: function(data,callback){
         // data object is {collection: "CollectionName", data: obj}
-        socket.emit('changeData',data);
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
-      receive: function(){
+      receive: function(data){
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     uploadPicture: {
-      send: function(data){
+      pingerString: 'uploadPicture',
+      send: function(data,callback){
         // data object is {file: FileReader().result, name: saveName}
-        socket.emit('uploadPicture',data);
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
-      receive:function(){
+      receive:function(data){
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     }
   }
@@ -60,25 +87,39 @@ const socketManager = function(socket){
   this.componentManager = {
 
     getAndAttachComponent: {
-      send: function(data){
+      pingerString: 'getAndAttachComponent',
+      send: function(data,callback){
         // data object is {Id: "FilenamePath", attachId: "elementId", properties: object}
-        socket.emit('getAndAttachComponent',data);
+        socket.emit(this.pingerString,data);
+        console.log('callback: ' + callback)
+        console.log('this.callback: ' + this.callback)
       },
-      receive: function(component){
-        let attachPoint = document.getElementById(component.attachId);
+      receive: function(data){
+        let attachPoint = document.getElementById(data.attachId);
         // attach the html
-        attachPoint.innerHTML =  component.styledHtml;
+        attachPoint.innerHTML =  data.styledHtml;
         // attach the javascript that comes with the component
-        eval('(' + component.js + ')()');
+        eval('(' + data.js + ')()');
+        console.log(this.callback); //this is the socket, not the object!!!
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     getComponent:{
-      send: function(data){
+      pingerString: 'getComponent',
+      send: function(data,callback){
         // data object is {Id: "FilenamePath"}
-        socket.emit('getComponent',data);
+        socket.emit(this.pingerString,data);
+        this.callback = callback || this.callback;
       },
-      receive: function(){
+      receive: function(data){
+        this.callback(data)
+      },
+      callback: function(data){
+        console.log(data);
       }
     }
   }
@@ -86,31 +127,46 @@ const socketManager = function(socket){
   this.userManager = {
 
     loginUser: {
+      pingerString: 'loginUser',
       send: function(data,callback){
         // data object is {username: "Username", "password: "Password"}
-        socket.emit('loginUser',data,sendCallback(callback));
+        socket.emit(this.pingerString,data,sendCallback(callback));
+        this.callback = callback || this.callback;
       },
-      receive: function(data,callback,passed){
-        evalCallback(callback,passed);
+      receive: function(data){
+        this.callback(data)
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     loggedIn: {
-      send: function(callback){
-        socket.emit('loggedIn',sendCallback(callback));
+      pingerString: 'loggedIn',
+      send: function(data,callback){
+        socket.emit(this.pingerString,sendCallback(callback));
+        this.callback = callback || this.callback;
       },
       receive: function(data){
-        evalCallback(data.callback,data.loggedIn);
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     },
 
     submitUser: {
+      pingerString: 'submitser',
       send: function(data,callback){
         // data object is {username: "Username", "password: "Password"}
-        socket.emit('submitUser',data,sendCallback(callback));
+        socket.emit(this.pingerString,data,sendCallback(callback));
+        this.callback = callback || this.callback;
       },
-      receive: function(callback,passed){
-        evalCallback(callback,passed);
+      receive: function(data){
+        this.callback(data);
+      },
+      callback: function(data){
+        console.log(data);
       }
     }
   }
@@ -124,14 +180,5 @@ const socketManager = function(socket){
         }
       }
     }
-  }
-
-  function evalCallback(callback,input){
-    let callbacks;
-    eval('callbacks = ' + callback);
-    callbacks(input);
-  }
-  function sendCallback(callback){
-    return callback.toString();
   }
 }
