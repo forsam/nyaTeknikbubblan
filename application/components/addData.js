@@ -1,34 +1,27 @@
 module.exports =
 {
   html:`
-    <div id="dropdownlist"></div>
+    <h1>This is a place to add data in</h1>
+    <div id="dropdownlist" class="col-3"></div>
+    <div class="col-1">Jst som thext</div>
   `,
   js:
     () => {
 
       function dataCallback(collections){
-        let dropdownProperties = {
-          header: 'Choose collection',
-          body: collections
-        }
-
+        console.log(collections)
         let data = {
           Id:"miniComponents/dropdownlist",
           attachId:"dropdownlist",
-          properties: dropdownProperties
+          properties: {
+            header: 'Choose collection',
+            body: collections
+          }
         }
         machina.componentManager.getAndAttachComponent.send(data);
       }
-<<<<<<< HEAD
       machina.dataManager.getCollections.send(data,dataCallback);
   },
-=======
-
-      machina.dataManager.getCollections.send(dataCallback);
-
-    }
-  ,
->>>>>>> origin/master
   style:`
   component{
     background-color: white;

@@ -2,13 +2,13 @@ module.exports =
 {
   html:`
     <h1>Welcome try to login my friend!</h1>
-    <div id="loginMount">
+    <div id="loginMount" class="container">
       <input type="text" id="username"><br />
       <input type="text" id="password"><br />
-      <div class="btn" id="submitBtn">Login Button</div>
+      <div class="btn btn-small col-6" id="submitBtn">Login Button</div>
+      <div class="btn btn-medium col-2">Login Button</div>
+      <div class="btn btn-large col-2">Login Button</div>
     </div>
-
-
   `,
   js:
     () => {

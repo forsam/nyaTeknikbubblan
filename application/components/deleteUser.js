@@ -2,7 +2,7 @@ module.exports =
 {
   html:`
     <h1>Delete your user!!</h1>
-    <div class="btn" id="deleteBtn">DELETE YOURSELF!!</div>
+    <div class="btn btn-small" id="deleteBtn">DELETE YOURSELF!!</div>
   `,
   js:
     () => {

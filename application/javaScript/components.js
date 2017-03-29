@@ -19,7 +19,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'getCollections'
     },
@@ -34,7 +33,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'getData'
     },
@@ -49,7 +47,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'addData'
     },
@@ -64,7 +61,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'changeData'
     },
@@ -79,7 +75,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'uploadPicture'
     }
@@ -98,11 +93,9 @@ const socketManager = function(socket){
         attachPoint.innerHTML =  data.styledHtml;
         // attach the javascript that comes with the component
         eval('(' + data.js + ')()');
-        console.log(this.callback); //this is the socket, not the object!!!
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'getAndAttachComponent'
     },
@@ -117,7 +110,6 @@ const socketManager = function(socket){
         this.callback(data)
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'getComponent'
     }
@@ -135,7 +127,6 @@ const socketManager = function(socket){
         this.callback(data)
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'loginUser'
     },
@@ -149,7 +140,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'loggedIn'
     },
@@ -164,7 +154,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'submitUser'
     },
@@ -179,7 +168,6 @@ const socketManager = function(socket){
         this.callback(data);
       },
       callback: function(data){
-        console.log(data);
       },
       pingerString: 'deleteUser'
     },

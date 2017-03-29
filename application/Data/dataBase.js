@@ -85,7 +85,7 @@ var getDataBase = function(path){
                   let mappingInfo = type[key][map].split(' ');
                   let theMap = this.getItemById(map);
                   delete theMap[itemToDelete[mappingInfo[0]]];
-                  fs.writeFileSync(path, JSON.stringify(theMap));
+                  fs.writeFileSync(__path + map, JSON.stringify(theMap));
                 }
               }
             }

@@ -4,10 +4,11 @@ const fs = require('fs');
 module.exports = {
 
   onGetCollections: function (data){
+    let collections;
     if(this.loggedIn){
-      let collections = dataBase.getCollections();
+      collections = dataBase.getCollections();
     }else{
-      let collections = [];
+      collections = [];
     }
     this.emit('getCollections',collections);
   },

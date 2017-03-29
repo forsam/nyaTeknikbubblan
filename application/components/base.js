@@ -5,7 +5,7 @@ module.exports =
       <h1>EN ENKEL WEBSHOP HOPPAS JAG</h1>
     </div>
     <div class="navbar">
-      <div class="navlink" id="Home">Home</div>
+      <div class="navlink" id="addData">addData</div>
       <div class="navlink" id="Login">Login</div>
       <div class="navlink" id="deleteUser">deleteUser</div>
       <div class="navlink" id="Webshop">Webshop</div>

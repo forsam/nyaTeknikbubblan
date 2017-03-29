@@ -1,0 +1,44 @@
+$colmargin: 0.01
+
+$laptopWidth: 1200px
+$tabletWidth: 750px
+$phoneWidth: 400px
+
+@mixin colCount($value)
+  width: (0.1*$value - $colmargin*2)*100%
+
+@mixin colChoose($value)
+  +colCount($value)
+  @media (max-width: $tabletWidth)
+    +colCount($value*2)
+  @media (max-width: $phoneWidth)
+    +colCount($value*10)
+
+@for $i from 1 through 10
+  .col-#{$i}
+    @extend %colstuff
+    +colChoose($i)
+
+.float
+  overflow: auto;
+  &-left
+    float: left;
+  &-right
+    float: right;
+
+.container
+  overflow: hidden;
+
+.row
+  word-spacing: -4px
+  border: 1px solid black
+  padding: 0px
+  margin: 0px
+
+%colstuff
+  background-color: white
+  border-radius: 0.1em
+  word-spacing: normal
+  display: inline-block
+  margin: $colmargin*100%
+  padding: 0px
