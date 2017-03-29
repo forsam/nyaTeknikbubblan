@@ -17,9 +17,11 @@ var getDataBase = function(path){
         fs.mkdirSync(collectionPath);
         fs.writeFileSync(collectionTypePath, JSON.stringify(collectionType));
 
-        console.log('The collection ' + collectionName + ' was added')
+        console.log('The collection ' + collectionName + ' was added');
+        return 1;
       }else{
         console.log('the collection already exist')
+        return 0;
       };
     },
 
@@ -27,6 +29,7 @@ var getDataBase = function(path){
       var __collectionName = collectionName;
       var __path = this.path + collectionName + '/';
       console.log('Collection: ' + __collectionName + ' was Getted!')
+
       collection = {
         exist: function(){
           return(fs.existsSync(__path));
@@ -37,12 +40,12 @@ var getDataBase = function(path){
             return JSON.parse(fs.readFileSync(__path + Id, 'utf8'));
           }else{
             console.log('trying to get something that doesn\'t exist');
-            return {Id: 0};
+            return 0;
           }
         },
         changeItemById: function(Id, obj){
           var Item = this.getItemById(Id);
-          if(Item.Id === 0){
+          if(Item === 0){
             console.log('Trying to change a nonexisting Item!')
             return 0;
           }
@@ -70,11 +73,26 @@ var getDataBase = function(path){
         },
         deleteItemById: function(Id){
           var path = __path + Id;
+
           if(fs.existsSync(path)){
+            var itemToDelete = this.getItemById(Id);
             fs.unlinkSync(path);
             console.log('Item with id: ' + Id + ' has been deleted!');
+            let type = this.getItemById('Type');
+            for(key in type){
+              if(key === 'maps'){
+                for(map in type[key]){
+                  let mappingInfo = type[key][map].split(' ');
+                  let theMap = this.getItemById(map);
+                  delete theMap[itemToDelete[mappingInfo[0]]];
+                  fs.writeFileSync(path, JSON.stringify(theMap));
+                }
+              }
+            }
+            return 1;
           }else{
             console.log('You are trying to delete nothing!');
+            return 0;
           };
         },
         typeCheck: function(obj){

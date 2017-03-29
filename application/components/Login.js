@@ -10,11 +10,11 @@ module.exports =
 
 
   `,
-  js:`
+  js:
     () => {
 
-      function dataCallback(loggedIn){
-        if(loggedIn){
+      function dataCallback(data){
+        if(data.name !== 'noUser'){
           document.getElementById('loginMount').innerHTML = "You are logged in now!";
         }else{
           document.getElementById('loginMount').innerHTML = "";
@@ -23,7 +23,7 @@ module.exports =
       }
 
       function loginEventHandler(){
-        machina.userManager.loginUser.send({username: username.value,password: password.value},dataCallback);
+        machina.userManager.loginUser.send({username: username.value, password: password.value},dataCallback);
       }
 
       let loginBtn = document.getElementById('submitBtn');
@@ -32,7 +32,7 @@ module.exports =
 
       loginBtn.addEventListener('click',loginEventHandler)
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;

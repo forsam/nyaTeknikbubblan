@@ -1,19 +1,19 @@
 const fs = require('fs');
 
 module.exports = {
-  onGetComponent: function (componentData){
-    let component = getComponent(componentData.Id);
+  onGetComponent: function (data){
+    let component = setComponent(data.Id);
     this.emit('getComponent',component);
   },
-  onGetAndAttachComponent: function (componentData){
-    let component = getComponent(componentData.Id, componentData.properties);
-    component.attachId = componentData.attachId;
+  onGetAndAttachComponent: function (data){
+    let component = setComponent(data.Id, data.properties);
+    component.attachId = data.attachId;
     this.emit('getAndAttachComponent',component);
   }
 }
 
 // extensive functions!
-function getComponent(Id, properties){
+function setComponent(Id, properties){
   // Get the file!!
   let path = process.env.baseName + '/application/components/' + Id + '.js';
   // Create data object!

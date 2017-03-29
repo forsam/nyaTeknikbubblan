@@ -8,7 +8,7 @@ module.exports =
       <input type="text" id="lastname" placeholder="last name"><br />
       <div class="btn" id="submitBtn">Login Button</div>
   `,
-  js:`
+  js:
     () => {
 
       function dataCallback(passed){
@@ -44,7 +44,7 @@ module.exports =
 
       submitBtn.addEventListener('click',submitEventHandler)
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;

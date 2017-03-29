@@ -14,7 +14,6 @@ module.exports =
       machina.componentManager.getAndAttachComponent.send({Id: "Home", attachId: 'likeHome'});
       machina.componentManager.getAndAttachComponent.send({Id: "Webshop", attachId: 'likeWebshop'});
       machina.componentManager.getAndAttachComponent.send({Id: "Blogg", attachId: 'likeBlogg'});
-      machina.componentManager.getAndAttachComponent.send({Id: "addPictures", attachId: 'likePicture'});
     }
   ,
   style:`

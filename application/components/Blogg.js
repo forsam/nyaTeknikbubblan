@@ -4,7 +4,7 @@ module.exports =
     <h1>The blogg!</h1>
     <h2 id="loggedInContent"> If you are logged in this will change!</h2>
   `,
-  js:`
+  js:
     () => {
       function dataCallback (loggedIn){
         if(loggedIn){
@@ -13,9 +13,9 @@ module.exports =
           document.getElementById('loggedInContent').innerHTML = 'NOT LOGGED IN';
         }
       }
-      machina.userManager.loggedIn.send(dataCallback)
+      machina.userManager.loggedIn.send(data,dataCallback)
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;

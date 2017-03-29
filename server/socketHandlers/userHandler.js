@@ -3,31 +3,43 @@ const fs = require('fs');
 const users = dataBase.getCollection('Users');
 
 module.exports = {
-  onLoginUser: function(data,callback){
+  onLoginUser: function(data){
     let usermap = users.getItemById('Usermap');
     if(usermap[data.username]){
       let user = users.getItemById(usermap[data.username]);
       if(user.password === data.password){
         this.loggedIn = true;
-        this.emit('loginUser', user,callback,true);
+        this.user.name = data.username;
+        this.user.password = data.password;
+
+        this.emit('loginUser', user);
       }
     }else{
-      let failString = 'password or username is wrong!';
-      this.emit('loginUser', failString,callback,false);
+      let noUser = {name: 'noUser'}
+      this.emit('loginUser',noUser);
     }
   },
-  onLoggedIn: function(callback){
-    let data = {callback: callback};
+
+  onLoggedIn: function(data){
     if(this.loggedIn){
-      data.loggedIn = true;
+      loggedIn = true;
       this.emit('loggedIn',data);
     }else{
-      data.loggedIn = false;
-      this.emit('loggedIn',data);
+      loggedIn = false;
+      this.emit('loggedIn',loggedIn);
     }
   },
-  onSubmitUser: function(data,callback){
+
+  onSubmitUser: function(data){
     let passed = users.addItem(data);
-    this.emit('submitUser',callback, passed);
+    this.emit('submitUser', passed);
+  },
+
+  onDeleteUser : function(data){
+    if(this.loggedIn){
+      let Id = users.getItemById('Usermap')[this.user.name]
+      let passed = users.deleteItemById(Id);
+      this.emit('deleteUser', passed);
+    }
   }
 }

@@ -3,11 +3,11 @@ module.exports =
   html:`
     <h1>The webshop!</h1>
   `,
-  js:`
+  js:
     () => {
 
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;

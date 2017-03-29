@@ -9,9 +9,11 @@ module.exports =
       // Fetch needed data
       var dataCallback = function(data){
         let html = '';
+        console.log(data)
         for(let i = 0; i < data.length; i++){
           console.log(data[i])
           html += '<img src="image/' + data[i].pictures[0] + '"></img>'
+
         }
         document.getElementById('bookContainer').innerHTML = html;
       }

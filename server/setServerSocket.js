@@ -7,6 +7,10 @@ const userHandler = require(process.env.baseName + '/server/socketHandlers/userH
 function setTheSockets(io){
   io.on('connection',function(socket){
     socket.loggedIn = false;
+    socket.user = {
+      name: '',
+      password: ''
+    };
 
     socket.on('getAndAttachComponent',componentHandler.onGetAndAttachComponent);
     socket.on('getComponent',componentHandler.onGetComponent);
@@ -20,6 +24,7 @@ function setTheSockets(io){
     socket.on('loginUser',userHandler.onLoginUser);
     socket.on('loggedIn',userHandler.onLoggedIn);
     socket.on('submitUser',userHandler.onSubmitUser);
+    socket.on('deleteUser',userHandler.onDeleteUser);
   })
 }
 

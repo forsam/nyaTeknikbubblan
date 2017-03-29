@@ -6,24 +6,23 @@ module.exports =
     <input type="file" name="img" id="img">
     <div class="btn" id="imgBtn">btn!!</div>
   `,
-  js:`() =>
-  {
-    let imgName = document.getElementById('imgName');
-    let imgBtn = document.getElementById('imgBtn');
-    let img = document.getElementById('img');
+  js:
+    () => {
+      let imgName = document.getElementById('imgName');
+      let imgBtn = document.getElementById('imgBtn');
+      let img = document.getElementById('img');
 
-    imgBtn.addEventListener('click',() => {
-      let reader = new FileReader();
-      let tmpName = imgName.value;
-      reader.addEventListener('loadend',() => {
-        machina.dataManager.uploadPicture.send({file: reader.result, name: tmpName});
+      imgBtn.addEventListener('click',() => {
+        let reader = new FileReader();
+        let tmpName = imgName.value;
+        reader.addEventListener('loadend',() => {
+          machina.dataManager.uploadPicture.send({file: reader.result, name: tmpName});
+        })
+        reader.readAsArrayBuffer(img.files[0]);
+        img.value = "";
+        imgName.value ="";
       })
-      reader.readAsArrayBuffer(img.files[0]);
-      img.value = "";
-      imgName.value ="";
-    })
-  }
-  `,
+  },
   style:`
   component{
     background-color: white;

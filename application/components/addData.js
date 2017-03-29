@@ -3,7 +3,7 @@ module.exports =
   html:`
     <div id="dropdownlist"></div>
   `,
-  js:`
+  js:
     () => {
 
       function dataCallback(collections){
@@ -12,13 +12,15 @@ module.exports =
           body: collections
         }
 
-        machina.componentManager.getAndAttachComponent.send({Id:"miniComponents/dropdownlist", attachId:"dropdownlist", properties: dropdownProperties});
+        let data = {
+          Id:"miniComponents/dropdownlist",
+          attachId:"dropdownlist",
+          properties: dropdownProperties
+        }
+        machina.componentManager.getAndAttachComponent.send(data);
       }
-
-      machina.dataManager.getCollections.send(dataCallback);
-
-    }
-  `,
+      machina.dataManager.getCollections.send(data,dataCallback);
+  },
   style:`
   component{
     background-color: white;
