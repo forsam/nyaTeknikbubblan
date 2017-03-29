@@ -3,7 +3,7 @@ module.exports =
   html:`
     <div id="dropdownlist"></div>
   `,
-  js:`
+  js:
     () => {
 
       function dataCallback(collections){
@@ -18,7 +18,7 @@ module.exports =
       machina.dataManager.getCollections.send(dataCallback);
 
     }
-  `,
+  ,
   style:`
   component{
     background-color: white;
