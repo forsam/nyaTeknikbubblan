@@ -19,8 +19,16 @@ module.exports =
         }
         machina.componentManager.getAndAttachComponent.send(data);
       }
+<<<<<<< HEAD
       machina.dataManager.getCollections.send(data,dataCallback);
   },
+=======
+
+      machina.dataManager.getCollections.send(dataCallback);
+
+    }
+  ,
+>>>>>>> origin/master
   style:`
   component{
     background-color: white;
